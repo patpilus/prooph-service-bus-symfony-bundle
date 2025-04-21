@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Prooph\Bundle\ServiceBus\Plugin;
 
-use Exception;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +26,7 @@ class DataCollector extends BaseDataCollector
         $this->data['message_callstack'] = [];
     }
 
-    public function collect(Request $request, Response $response, Exception $exception = null): void
+    public function collect(Request $request, Response $response, ?\Throwable $exception = null): void
     {
         foreach ($this->busNames as $busName) {
             $this->data['config'][$busName] = $this->container->getParameter(
